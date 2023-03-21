@@ -281,6 +281,8 @@ class mongoDbClient {
             {
                 $group: {
                     _id: "$_id",
+                    "user_id": { $last: "$_id" },
+                    "user": { $last: "$name" },
                     nbAccount: {
                         $sum: "$accountSizeArray",
                     },
@@ -345,6 +347,8 @@ class mongoDbClient {
             }, {
                 '$group': {
                     '_id': '$_id',
+                    'user_id': { $last: "$_id" },
+                    'user': { $last: "$name" },
                     'nbTransactions': {
                         '$sum': '$transactions.transaction_count'
                     }
